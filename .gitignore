@@ -1,5 +1,7 @@
-
-
 backup/
 elpa/
 transient/
+auto-save-list/
+
+tramp
+recentf

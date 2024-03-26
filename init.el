@@ -77,6 +77,11 @@
 
 ;; configure auto-save directory
 (setq temporary-file-directory (concat user-emacs-directory "/backup"))
+
+;; create directory if not exists
+(unless (file-directory-p temporary-file-directory)
+  (make-directory temporary-file-directory))
+
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
