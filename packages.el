@@ -1,9 +1,8 @@
 (require 'package)
 
 (setq package-archives
-      '(("elpa" . "http://tromey.com/elpa/")
-        ("melpa" . "http://melpa.org/packages/")
-        ("gnu" . "http://elpa.gnu.org/packages/")))
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("melpa" . "http://melpa.org/packages/")))
 
 ; (package-initialize)
 
