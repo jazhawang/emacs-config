@@ -1,9 +1,11 @@
-# emacs-config
+# emacs-personal
 
-My old emacs config imported from my previous github accounts.
 
-todo: 
 
-1.change keystroke/shortcuts to be more terminal-friendly
+My old (but currently being revived!) emacs config imported from my previous github accounts.
 
-2.migrate from emacs24 to emacs26
+
+Requires emacs29 and `libvterm-dev`
+
+
+
