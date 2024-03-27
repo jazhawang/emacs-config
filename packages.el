@@ -4,7 +4,6 @@
       '(("gnu" . "http://elpa.gnu.org/packages/")
         ("melpa" . "http://melpa.org/packages/")))
 
-; (package-initialize)
 
 (defvar required-packages
   '(
@@ -15,18 +14,15 @@
     solarized-theme
     smart-mode-line
     helm
-    which-key
     org
     which-key
     multiple-cursors
     docker
     dockerfile-mode
-    gruvbox-theme
     helm
-    dirvish
-    marginalia
     use-package
     vterm
+    magit
     )
   "A list of required packages. Will be either installed or updated at launch")
 
@@ -95,10 +91,8 @@
       '(c-mode-common-hook emacs-lisp-mode-hook java-mode-hook python-mode-hook))
 
 
-
 (require 'which-key)
 (which-key-mode) ; activate
-
 
 (require 'org)
 (define-key jack-mode-map "\C-cl" 'org-store-link)
@@ -110,13 +104,3 @@
 (define-key jack-mode-map (kbd "C-<") 'mc/mark-previous-like-this)
 (define-key jack-mode-map (kbd "C-c d") 'mc/mark-all-in-region)
 
-
-(require 'marginalia)
-(marginalia-mode 1)
-
-
-(use-package dirvish
-  :ensure t
-  :init
-  ;; Let Dirvish take over Dired globally
-  (dirvish-override-dired-mode))

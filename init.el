@@ -101,7 +101,8 @@
 (setq custom-file (concat user-emacs-directory "/custom.el"))
 
 
-(load-theme 'gruvbox-dark-medium t)
+(load-theme 'solarized-light t)
+
 
 (jack-mode)
 
