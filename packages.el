@@ -23,6 +23,11 @@
     use-package
     vterm
     magit
+    projectile
+    lsp-mode
+    arduino-mode
+    treemacs
+    treemacs-projectile
     )
   "A list of required packages. Will be either installed or updated at launch")
 
@@ -88,11 +93,14 @@
 (add-hook 'text-mode-hook
           (lambda () (flyspell-mode 1)))
 (mapc (lambda (mode-hook) (add-hook mode-hook (lambda () (flyspell-prog-mode))))
-      '(c-mode-common-hook emacs-lisp-mode-hook java-mode-hook python-mode-hook))
+      '(c-mode-common-hook emacs-lisp-mode-hook java-mode-hook python-mode-hook c++-mode-hook arduino-mode-hook))
 
 
 (require 'which-key)
 (which-key-mode) ; activate
+(add-hook 'c-mode-hook 'lsp)
+(add-hook 'c++-mode-hook 'lsp)
+
 
 (require 'org)
 (define-key jack-mode-map "\C-cl" 'org-store-link)
@@ -103,4 +111,41 @@
 (define-key jack-mode-map (kbd "C->") 'mc/mark-next-like-this)
 (define-key jack-mode-map (kbd "C-<") 'mc/mark-previous-like-this)
 (define-key jack-mode-map (kbd "C-c d") 'mc/mark-all-in-region)
+
+(require 'lsp-mode)
+
+
+;; https://emacs-lsp.github.io/lsp-mode/page/adding-new-language/
+
+(defcustom lsp-arduino-executable
+  '("arduino-language-server")
+  "Command to start the arduino lsp server"
+  :risky t
+  :type 'file
+  )
+
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-language-id-configuration
+               '(arduino-mode . "arduino"))
+  ;; (add-to-list 'lsp-language-id-configuration
+  ;;          '(c-mode . "arduino"))
+  ;; (add-to-list 'lsp-language-id-configuration
+  ;;              '(c++-mode . "arduino"))
+
+  (lsp-register-client
+   (make-lsp--client
+    :new-connection (lsp-stdio-connection
+                     '("~/Documents/tarhorn/src/pico/arduino-language-server/arduino-language-server" "--fqbn" "rp2040:rp2040:rpipicow" "-cli" "/home/zhao/Documents/tarhorn/src/pico/arduino-cli" "-cli-config" "$HOME/.arduino15/arduino-cli.yaml" "-clangd" "/usr/bin/clangd"))
+    :activation-fn (lsp-activate-on "arduino")
+    :priority -1 ; should take lower priority than the regular c/c++ modes, for those files. The arduino mode can be enabled per project using the directory variable: lsp-enabled-clients
+    :server-id 'arduino-language-server))
+)
+
+
+(require 'treemacs)
+
+;; (with-eval-after-load 'eglot
+;;    (add-to-list 'eglot-server-programs
+;;                 '(arduino-mode . ("~/Documents/tarhorn/src/pico/arduino-language-server/arduino-language-server" "--fqbn" "rp2040:rp2040:rpipicow" "-cli" "/home/zhao/Documents/tarhorn/src/pico/arduino-cli" "-cli-config" "$HOME/.arduino15/arduino-cli.yaml" "-clangd" "/usr/bin/clangd"))))
+
 
