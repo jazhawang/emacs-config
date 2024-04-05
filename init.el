@@ -111,3 +111,6 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 
+;; macos specific stuff
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier 'super)
