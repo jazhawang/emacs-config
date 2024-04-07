@@ -36,6 +36,9 @@
 ;; %s
 " (calendar-date-string (calendar-current-date) nil)))
 
+;; set gc cons to higher number (currently for lsp servers)
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 ;; Sets the default indent style for c-like programming languages
 (setq c-default-style '((java-mode . "bsd")
