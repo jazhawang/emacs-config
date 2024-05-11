@@ -13,13 +13,11 @@
     flyspell
     solarized-theme
     smart-mode-line
-    helm
     org
     which-key
     multiple-cursors
     docker
     dockerfile-mode
-    helm
     use-package
     vterm
     magit
@@ -58,19 +56,19 @@
 (require 'jack-mode)
 
 
-(require 'helm)
+;; (require 'helm)
 
-(helm-mode 1)
-(setq helm-M-x-fuzzy-match t) ;; enable fuzzy matching for helm-M-x
+;; (helm-mode 1)
+;; (setq helm-M-x-fuzzy-match t) ;; enable fuzzy matching for helm-M-x
 
-(setq helm-buffers-fuzzy-matching t
-      helm-recentf-fuzzy-match t) ;; fuzzy matching for helm-mini
+;; (setq helm-buffers-fuzzy-matching t
+;;       helm-recentf-fuzzy-match t) ;; fuzzy matching for helm-mini
 
-(define-key jack-mode-map (kbd "C-c h") 'helm-command-prefix)
-(define-key jack-mode-map [remap apropos-command] 'helm-apropos)
-(define-key jack-mode-map [remap execute-extended-command] 'helm-M-x)
-(define-key jack-mode-map [remap find-file] 'helm-find-files)
-(define-key jack-mode-map [remap switch-to-buffer] 'helm-mini)
+;; (define-key jack-mode-map (kbd "C-c h") 'helm-command-prefix)
+;; (define-key jack-mode-map [remap apropos-command] 'helm-apropos)
+;; (define-key jack-mode-map [remap execute-extended-command] 'helm-M-x)
+;; (define-key jack-mode-map [remap find-file] 'helm-find-files)
+;; (define-key jack-mode-map [remap switch-to-buffer] 'helm-mini)
 
 
 (defvar jack-main-row-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n ?s))
@@ -166,4 +164,18 @@
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
+
+(use-package casual-dired
+  :ensure t
+  :bind (:map dired-mode-map ("C-o" . 'casual-dired-tmenu)))
+
+
+(use-package vertico
+  :ensure t
+  :init
+  (vertico-mode))
+
+;; (use-package savehist                  
+;;   :init
+;;   (savehist-mode))
 
