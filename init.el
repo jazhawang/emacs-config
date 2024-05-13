@@ -117,3 +117,13 @@
 ;; macos specific stuff
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
+
+
+;; Stop random buffers hijacking faraway buffers
+
+
+
+
+
+
+

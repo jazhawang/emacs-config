@@ -2,16 +2,17 @@
 
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("melpa" . "http://melpa.org/packages/")))
+        ("melpa" . "http://melpa.org/packages/"))) 
+
 
 (defvar required-packages
   '(
     avy
     ace-window    
-    flyspell
+    flyspell    
     solarized-theme
     smart-mode-line
-    org
+    org    
     which-key
     multiple-cursors
     docker
@@ -57,7 +58,6 @@
 
 
 (require 'avy)
-(setq avy-style 'at-full)
 (setq avy-keys jack-main-row-keys)
 (define-key jack-mode-map (kbd "C-c C-g") 'avy-goto-line)
 (define-key jack-mode-map (kbd "C-c C-c") 'avy-goto-char)
@@ -269,4 +269,4 @@
  :init
  (setq completion-styles '(orderless basic)
    completion-category-defaults nil
-   completion-category-overrides '((file (styles . (partial-completion))))))  
+   completion-category-overrides '((file (styles . (partial-completion))))))
